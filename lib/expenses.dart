@@ -37,6 +37,7 @@ class _Expenses extends State<Expenses> {
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+        useSafeArea: true,
         isScrollControlled: true,
         context: context,
         builder: (context) {
@@ -87,6 +88,10 @@ class _Expenses extends State<Expenses> {
       );
     }
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      //!added this to avoid resizing of the screen when keyboard is open.
+      //!when the modal bottom sheet is open in landscape it was resizing the chart and it was overflowing.
+      //!now only the modal bottom sheet will become scrollable when keyboard is open and this scaffold will not resize.
       appBar: AppBar(
         title: Text("Flutter Expense Tracker"),
         actions: [
